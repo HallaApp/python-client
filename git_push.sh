@@ -1,12 +1,12 @@
 #!/bin/sh
 # ref: https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/
 #
-# Usage example: /bin/sh ./git_push.sh wing328 swagger-petstore-perl "minor update"
-
+#/bin/sh ./git_push.sh hallaApp python-client "minor update" HallaApp develop
 git_user_id=$1
 git_repo_id=$2
 release_note=$3
 git_group_id=$4
+git_branch=$5
 if [ "$git_user_id" = "" ]; then
     git_user_id="GIT_USER_ID"
     echo "[INFO] No command line input provided. Set \$git_user_id to $git_user_id"
@@ -22,8 +22,12 @@ if [ "$release_note" = "" ]; then
     echo "[INFO] No command line input provided. Set \$release_note to $release_note"
 fi
 
+sed -i 's/pip install git+https://github.com/GIT_USER_ID/GIT_REPO_ID.git/pip install git+https://github.com/HallaApp/python-client.git/g' input.txt
+
 # Initialize the local directory as a Git repository
 git init
+
+pip install git+https://github.com/GIT_USER_ID/GIT_REPO_ID.git
 
 # Adds the files in the local repository and stages them for commit.
 git add .
@@ -39,9 +43,8 @@ if [ "$git_remote" = "" ]; then # git remote not defined
         echo "[INFO] \$GIT_TOKEN (environment variable) is not set. Using the git crediential in your environment."
         git remote add origin https://github.com/HallaApp/python-client.git
     else
-        git remote add origin https://${git_user_id}:${GIT_TOKEN}@github.com/${git_user_id}/${git_repo_id}.git
+        git remote add origin https://HallaApp:${GIT_TOKEN}@github.com/HallaApp/${git_repo_id}.git
     fi
-
 fi
 
 git pull origin master
