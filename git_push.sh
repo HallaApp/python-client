@@ -22,7 +22,7 @@ if [ "$release_note" = "" ]; then
     echo "[INFO] No command line input provided. Set \$release_note to $release_note"
 fi
 
-sed   -i 's#https://github.com/GIT_USER_ID/GIT_REPO_ID.git#https://github.com/HallaApp/python-client.git#g' README.md >> README.md
+sed   -i 's#https://github.com/GIT_USER_ID/GIT_REPO_ID.git#https://github.com/HallaApp/python-client.git#g' README.md > README.md
 
 # Initialize the local directory as a Git repository
 git init
