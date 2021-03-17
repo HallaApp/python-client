@@ -22,12 +22,11 @@ if [ "$release_note" = "" ]; then
     echo "[INFO] No command line input provided. Set \$release_note to $release_note"
 fi
 
-sed -i 's/pip install git+https://github.com/GIT_USER_ID/GIT_REPO_ID.git/pip install git+https://github.com/HallaApp/python-client.git/g' input.txt
+sed -i 's/pip install git+https://github.com/GIT_USER_ID/GIT_REPO_ID.git/pip install git+https://github.com/HallaApp/python-client.git/g' README.md
 
 # Initialize the local directory as a Git repository
 git init
 
-pip install git+https://github.com/GIT_USER_ID/GIT_REPO_ID.git
 
 # Adds the files in the local repository and stages them for commit.
 git add .
